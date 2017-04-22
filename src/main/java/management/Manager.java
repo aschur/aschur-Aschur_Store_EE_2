@@ -323,7 +323,7 @@ public class Manager {
 		try {
 			try {
 				Configuration cfg = new Configuration();
-				cfg.addResource("management\\appsetting.hbm.xml");
+				cfg.addResource("orm/appsetting.hbm.xml");
 				cfg.configure();
 				serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(cfg.getProperties()).build();
