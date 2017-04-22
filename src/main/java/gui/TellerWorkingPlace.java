@@ -13,10 +13,12 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 import management.Manager;
+import management.SettingsLoader;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.Observable;
@@ -224,7 +226,7 @@ public class TellerWorkingPlace extends JFrame implements Observer {
 
 
         // NORTH
-        addButton(enterNewCheckButton, enterNewCheckAL, "src/main/resources/icons/1483579041_plus.png", jPanelNorth);
+        addButton(enterNewCheckButton, enterNewCheckAL, "icons/plus.png", jPanelNorth);
 
         consumersTable = new ConsumersTable(consumers);
         addTableToPanel(consumersTable, new Dimension(250, 150), jPanelNorth);
@@ -232,7 +234,7 @@ public class TellerWorkingPlace extends JFrame implements Observer {
         productsConsumerTable = new ProductsConsumerTable(this);
         addTableToPanel(productsConsumerTable, new Dimension(250, 150), jPanelNorth);
 
-        addButton(readBarcodeButton, readBarcodeAL, "src/main/resources/icons/Barcode-icon.png", jPanelNorth);
+        addButton(readBarcodeButton, readBarcodeAL, "icons/barcode.png", jPanelNorth);
 
         // CENTER
         productsSaleTable = new ProductsSaleTable(cashRegister);
@@ -245,16 +247,16 @@ public class TellerWorkingPlace extends JFrame implements Observer {
         jPanelEast.add(jscrlp);
 
         // SOUTH
-        addButton(enterAppSettingsButton, enterAppSettingsAL, "src/main/resources/icons/Services_22.png", jPanelSouth);
+        addButton(enterAppSettingsButton, enterAppSettingsAL, "icons/services.png", jPanelSouth);
         
         addTextField(paymentAmountField, jPanelSouth, "Payment");
         addTextField(receivedAmountField, jPanelSouth, "Received");
         addTextField(changeField, jPanelSouth, "Change");
 
 
-        addButton(payButton, payAL, "src/main/resources/icons/coins_4011.png", jPanelSouth);
+        addButton(payButton, payAL, "icons/coins.png", jPanelSouth);
 
-        addButton(breakCheckButton, breakCheckAL, "src/main/resources/icons/check-icon.png", jPanelSouth);
+        addButton(breakCheckButton, breakCheckAL, "icons/check.png", jPanelSouth);
 
 
 
@@ -395,7 +397,43 @@ public class TellerWorkingPlace extends JFrame implements Observer {
 
     private static ImageIcon createIcon(String path) {
 
-            return new ImageIcon(path);
+    	ImageIcon imageIcon = null;
+    	InputStream inputStream = null;
+    	
+    	try {
+
+    		ClassLoader myCL = TellerWorkingPlace.class.getClassLoader();
+        	inputStream = myCL.getResourceAsStream(path);
+        	byte[] byteArray = new byte[inputStream.available()];
+
+			try {
+
+				int c;
+				int a = 0;
+				while ((c = inputStream.read()) != -1) {
+
+					byteArray[a] = (byte) c;
+
+					a++;
+				}
+				
+				imageIcon = new ImageIcon(byteArray);
+
+			} finally {
+
+				inputStream.close();
+			}
+
+		} catch (Exception x) {
+			
+			x.printStackTrace();
+			
+			return imageIcon;
+			
+		}
+    	
+   
+        return imageIcon;
 
     }
 
