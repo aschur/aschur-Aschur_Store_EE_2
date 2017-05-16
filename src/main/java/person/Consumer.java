@@ -145,8 +145,6 @@ public class Consumer extends Person{
 
     public Map<Product, Integer> getMapProducts(){
 
-//        System.out.println(getName() +":"+ mapProducts);
-
         Map<Product, Integer> mapProductsCopy = new HashMap<Product, Integer>();
         mapProductsCopy.putAll(mapProducts);
 
@@ -202,8 +200,7 @@ public class Consumer extends Person{
     }
 
     public void takeCheck(String check){
-
-//        System.out.println(getName());
+    	
         System.out.println(check);
 
     }
@@ -212,8 +209,6 @@ public class Consumer extends Person{
     public void setPaidProducts(Map<Product, Integer> products){
 
         mapProducts = products;
-
-//        System.out.println(getName() + ":" + mapProducts);
 
     }
 }

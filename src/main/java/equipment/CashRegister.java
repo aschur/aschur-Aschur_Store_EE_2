@@ -214,9 +214,6 @@ public class CashRegister extends Observable implements Equipment, Observer{
 
     public Map<Product, Integer> getProductsConsumer(Map<Product, Integer> mapProductsConsumer){
 
-
-//        System.out.println(productSalesDataTable);
-
         Map<Product, Integer> productsConsumer = new HashMap<Product, Integer>();
 
         for (ProductSalesData row :

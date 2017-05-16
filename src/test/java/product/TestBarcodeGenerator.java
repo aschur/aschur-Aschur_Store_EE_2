@@ -1,36 +1,25 @@
 package product;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestBarcodeGenerator {
 
-//	@BeforeClass
-//	public static void setUpBeforeClass() throws Exception {
-//	}
-//
-//	@AfterClass
-//	public static void tearDownAfterClass() throws Exception {
-//	}
-//
-//	@Before
-//	public void setUp() throws Exception {
-//	}
-//
-//	@After
-//	public void tearDown() throws Exception {
-//	}
+	private static int barcodeInt; 
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+		String barcode = BarcodeGenerator.generate();
+		barcodeInt = Integer.parseInt(barcode);
+		
+	}
 
 	@Test
 	public void testGenerate() {
-
-		String barcode = BarcodeGenerator.generate();
-		int barcodeInt = Integer.parseInt(barcode);
+	
 		assertTrue(barcodeInt < 1000000);
 		
 	}
